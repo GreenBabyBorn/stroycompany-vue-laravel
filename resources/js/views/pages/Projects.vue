@@ -12,7 +12,7 @@
                 </div>
                 <div class="projects__body">
                     <AppPreloader v-if="!this.$store.state.projects.loaded"></AppPreloader>
-                    <transition-group name="list">
+<!--                    <transition-group name="list">-->
                     <div v-for="project in this.$store.getters['projects/getAllProjects']" :key="project.id"
                          class="projects__item">
                         <div class="projects__year">{{ project.years }}</div>
@@ -28,7 +28,7 @@
                             </router-link>
                         </div>
                     </div>
-                    </transition-group>
+<!--                    </transition-group>-->
                 </div>
 
             </div>
@@ -58,17 +58,17 @@ export default {
 @use "./resources/sass/mixins.scss" as * ;
 @use "./resources/sass/_variables.scss" as * ;
 
-.list-move, /* apply transition to moving elements */
-.list-enter-active,
-.list-leave-active {
-    transition: all 0.3s ease-out;
-}
-
-.list-enter-from,
-.list-leave-to {
-    opacity: 0;
-    transform: translateX(100px);
-}
+//.list-move, /* apply transition to moving elements */
+//.list-enter-active,
+//.list-leave-active {
+//    transition: all 0.3s ease-out;
+//}
+//
+//.list-enter-from,
+//.list-leave-to {
+//    opacity: 0;
+//    transform: translateX(100px);
+//}
 
 .projects {
     &__container {
