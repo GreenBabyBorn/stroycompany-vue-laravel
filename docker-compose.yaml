@@ -16,6 +16,13 @@ services:
     build:
       context: .
       dockerfile: Dockerfile
+    environment:
+      - APP_NAME=Laravel
+      - APP_URL=$APP_URL
+      - DB_DATABASE=$DB_DATABASE
+      - DB_PASSWORD=$DB_PASSWORD
+      - DB_USERNAME=$DB_USERNAME
+      - VUE_APP_URL_API=$VUE_APP_URL_API
     volumes:
       - ./:/var/www
     depends_on:
@@ -28,8 +35,8 @@ services:
     volumes:
       - ./docker-compose/mysql/:/var/lib/mysql/
     environment:
-      MYSQL_DATABASE: stroycompany
-      MYSQL_ROOT_PASSWORD: root
+      MYSQL_DATABASE: $DB_DATABASE
+      MYSQL_ROOT_PASSWORD: $DB_PASSWORD
     ports:
       - '8101:3306'
     command: mysqld --character-set-server=utf8 --collation-server=utf8_unicode_ci
