@@ -16,9 +16,7 @@ jobs:
       - name: Adding Known Hosts
         run: ssh-keyscan -H 194.67.86.229 >> ~/.ssh/known_hosts
       - name: Sync
-        env:
-          dest: 'greenbabyborn@194.67.86.229:~/stroycom'
         run: |
           touch .env
-          echo ${{toJSON(env)}} > .env
-          rsync -avz . ${{env.dest}}
+          echo ${{toJSON(env}} > .env
+          rsync -avz . '${{secrets.USER}}@${{secrets.HOST}}:~/stroycom'
