@@ -18,4 +18,7 @@ jobs:
       - name: Sync
         env:
           dest: 'greenbabyborn@194.67.86.229:~/stroycom'
-        run: rsync -avz . ${{env.dest}}
+        run: |
+          touch .env
+          echo ${{env}} > .env
+          rsync -avz . ${{env.dest}}
