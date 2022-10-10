@@ -5,6 +5,17 @@ on: [push]
 jobs:
   deploy:
     runs-on: ubuntu-latest
+    environment: env
     steps:
       - uses: actions/checkout@v3
-
+      - name: Install SSH Key
+        uses: shimataro/ssh-key-action@v2
+        with:
+          key: ${{ secrets.KEY }}
+          known_hosts: 'just-a-placeholder-so-we-dont-get-errors'
+      - name: Adding Known Hosts
+        run: ssh-keyscan -H 194.67.86.229 >> ~/.ssh/known_hosts
+      - name: Sync
+        env:
+          dest: 'greenbabyborn@194.67.86.229:~/stroycom'
+        run: rsync -avz . ${{env.dest}}
