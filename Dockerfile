@@ -24,7 +24,7 @@ RUN curl -sS https://getcomposer.org/installer | php -- \
     --install-dir=/usr/local/bin
 
 WORKDIR /var/www
-
+RUN cd .
 #RUN npm ci
 #RUN npm run dev
 RUN composer update
