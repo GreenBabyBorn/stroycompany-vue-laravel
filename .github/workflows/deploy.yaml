@@ -17,9 +17,10 @@ jobs:
         run: ssh-keyscan -H 194.67.86.229 >> ~/.ssh/known_hosts
       - name: Sync
         run: |
-          
+
           touch .env
+          echo ${{secrets.ENV}} > .env
           rsync -avz . '${{secrets.USER}}@${{secrets.HOST}}:~/stroycom'
           ssh ${{secrets.USER}}@${{secrets.HOST}} bash
           docker compose up -d
-          
+

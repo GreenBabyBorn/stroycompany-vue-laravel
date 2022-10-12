@@ -16,13 +16,6 @@ services:
     build:
       context: .
       dockerfile: Dockerfile
-    environment:
-      - APP_NAME=Laravel
-      - APP_URL=$APP_URL
-      - DB_DATABASE=$DB_DATABASE
-      - DB_PASSWORD=$DB_PASSWORD
-      - DB_USERNAME=$DB_USERNAME
-      - VUE_APP_URL_API=$VUE_APP_URL_API
     volumes:
       - ./:/var/www
     depends_on:
