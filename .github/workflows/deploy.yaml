@@ -17,6 +17,6 @@ jobs:
         run: ssh-keyscan -H 194.67.86.229 >> ~/.ssh/known_hosts
       - name: Sync
         run: |
+          who
           touch .env
-          echo ${{toJSON(env}} > .env
           rsync -avz . '${{secrets.USER}}@${{secrets.HOST}}:~/stroycom'
