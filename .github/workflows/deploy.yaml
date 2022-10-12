@@ -20,5 +20,7 @@ jobs:
           
           touch .env
           rsync -avz . '${{secrets.USER}}@${{secrets.HOST}}:~/stroycom'
-          ssh ${{secrets.USER}}@${{secrets.HOST}} ls
+          ssh ${{secrets.USER}}@${{secrets.HOST}} bash
+          ls
+          who
           
