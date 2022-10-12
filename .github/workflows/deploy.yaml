@@ -20,13 +20,4 @@ jobs:
           echo "${{secrets.ENV}}" > .env
           rsync -avz . '${{secrets.USER}}@${{secrets.HOST}}:~/stroycom'
           ssh ${{secrets.USER}}@${{secrets.HOST}} "cd ~/stroycom \
-          && docker system prune -f \
-          && npm i \
-          && npm run dev \
-          && docker compose up -d \
-          && docker exec project_app composer update \
-          && docker exec project_app composer install \
-          && docker exec project_app php artisan migrate \
-          && docker exec project_app php artisan cache:clear \
-          && docker exec project_app php artisan storage:link \
-          && docker exec project_app php artisan route:cache"
+          && docker system prune -f \"

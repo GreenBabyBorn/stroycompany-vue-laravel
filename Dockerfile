@@ -23,3 +23,12 @@ RUN curl -sS https://getcomposer.org/installer | php -- \
     --install-dir=/usr/local/bin
 
 WORKDIR /var/www
+
+RUN npm ci
+RUN npm run dev
+RUN composer update
+RUN composer install
+RUN php artisan migrate
+RUN php artisan cache:clear
+RUN php artisan storage:link
+RUN php artisan route:cache
