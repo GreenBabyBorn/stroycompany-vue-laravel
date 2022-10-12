@@ -21,6 +21,5 @@ jobs:
           touch .env
           rsync -avz . '${{secrets.USER}}@${{secrets.HOST}}:~/stroycom'
           ssh ${{secrets.USER}}@${{secrets.HOST}} bash
-          ls
-          who
+          docker compose up
           
