@@ -1,5 +1,5 @@
 FROM php:8.1-fpm
-FROM node:16
+
 
 RUN apt-get update && apt-get install -y \
     apt-utils \
@@ -25,8 +25,8 @@ RUN curl -sS https://getcomposer.org/installer | php -- \
 
 WORKDIR /var/www
 
-RUN npm ci
-RUN npm run dev
+#RUN npm ci
+#RUN npm run dev
 RUN composer update
 RUN composer install
 RUN php artisan migrate
