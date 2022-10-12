@@ -2,7 +2,7 @@
     <section class="projects page-layout">
         <div class="projects__container page-layout__container">
             <div class="projects__top page-layout__top">
-                <h1 class="projects__title title">Проекты</h1>
+                <h1 class="projects__title title">Проекты(но их пока нет)</h1>
                 <router-link to="/" class="page-layout__back"><img src="/img/arrow.svg" alt="Стрелка назад">На главную
                 </router-link>
             </div>
