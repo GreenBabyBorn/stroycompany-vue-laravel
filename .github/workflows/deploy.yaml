@@ -20,4 +20,5 @@ jobs:
           echo "${{secrets.ENV}}" > .env
           rsync -avz . '${{secrets.USER}}@${{secrets.HOST}}:~/stroycom'
           ssh ${{secrets.USER}}@${{secrets.HOST}} "cd ~/stroycom \
-          && docker system prune -f \"
+          && docker system prune -f \
+          && docker compose up -d"
