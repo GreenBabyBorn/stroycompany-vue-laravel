@@ -2,7 +2,6 @@
 
         <div class="preloader"></div>
 
-
 </template>
 
 <script>
