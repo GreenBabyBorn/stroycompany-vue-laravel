@@ -18,7 +18,7 @@ jobs:
         run: |
           touch .env
           echo "${{secrets.ENV}}" > .env
-          rsync -avz . '${{secrets.USER}}@${{secrets.HOST}}:~/stroycom'
+          rsync -avzp . '${{secrets.USER}}@${{secrets.HOST}}:~/stroycom'
           ssh ${{secrets.USER}}@${{secrets.HOST}} "cd ~/stroycom \
           && docker system prune -f \
           && npm ci \
