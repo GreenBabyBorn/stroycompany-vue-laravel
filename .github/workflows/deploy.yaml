@@ -29,4 +29,5 @@ jobs:
           && docker exec project_app php artisan migrate \
           && docker exec project_app php artisan cache:clear \
           && docker exec project_app php artisan storage:link \
-          && docker exec project_app php artisan route:cache"
+          && docker exec project_app php artisan route:cache \
+          && sudo chmod -R 777 storage"

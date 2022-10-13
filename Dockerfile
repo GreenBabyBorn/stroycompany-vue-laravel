@@ -13,7 +13,7 @@ RUN apt-get update && apt-get install -y \
     docker-php-ext-install zip && \
     apt-get clean && \
     rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/* \
-    sudo chmod -R 777 /var/www/storage
+
 
 #COPY ./docker-compose/php/php.ini /usr/local/etc/php/conf.d/php.ini
 
