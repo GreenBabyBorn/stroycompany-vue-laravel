@@ -18,7 +18,7 @@ jobs:
         run: |
           touch .env
           echo "${{secrets.ENV}}" > .env
-          rsync -avzp . '${{secrets.USER}}@${{secrets.HOST}}:~/stroycom'
+          rsync -avzpg . '${{secrets.USER}}@${{secrets.HOST}}:~/stroycom'
           ssh ${{secrets.USER}}@${{secrets.HOST}} "cd ~/stroycom \
           && docker system prune -f \
           && npm ci \
@@ -29,5 +29,4 @@ jobs:
           && docker exec project_app php artisan migrate \
           && docker exec project_app php artisan cache:clear \
           && docker exec project_app php artisan storage:link \
-          && docker exec project_app php artisan route:cache \
-          && sudo chmod -R 777 storage"
+          && docker exec project_app php artisan route:cache"
