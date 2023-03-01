@@ -7,26 +7,25 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
-      - name: Install SSH Key
-        uses: shimataro/ssh-key-action@v2
-        with:
-          key: ${{ secrets.KEY }}
-          known_hosts: "just-a-placeholder-so-we-dont-get-errors"
-      - name: Adding Known Hosts
-        run: ssh-keyscan -H ${{secrets.HOST}} >> ~/.ssh/known_hosts
+      - name: Add ssh key
+        run: |
+          mkdir ~/.ssh
+          echo "${{ secrets.KEY }}" > ~/.ssh/key
+          chmod 600 ~/.ssh/key
       - name: Deploy to server
+        env:
+          options: ssh -i ~/.ssh/key -o StrictHostKeyChecking=no
         run: |
           touch .env
           echo "${{secrets.ENV}}" > .env
-          rsync -avzpg . '${{secrets.USER}}@${{secrets.HOST}}:~/stroycom'
-          ssh ${{secrets.USER}}@${{secrets.HOST}} "cd ~/stroycom \
+          rsync --chown=www-data:www-data -e "$options" -avzpg . '${{secrets.USER}}@${{secrets.HOST}}:/var/www/stroycom'
+          ssh -i ~/.ssh/key -o StrictHostKeyChecking=no ${{secrets.USER}}@${{secrets.HOST}} "cd /var/www/stroycom \
           && docker system prune -f \
           && npm ci \
-          && npm run dev \
+          && npm run build \
           && docker compose up -d \
-          && docker exec project_app composer update \
-          && docker exec project_app composer install \
-          && docker exec project_app php artisan migrate \
-          && docker exec project_app php artisan cache:clear \
-          && docker exec project_app php artisan storage:link \
-          && docker exec project_app php artisan route:cache"
+          && docker exec funnyholidays_app composer update --optimize-autoloader \
+          && docker exec funnyholidays_app composer install --optimize-autoloader --no-dev \
+          && docker exec funnyholidays_app php artisan migrate \
+          && docker exec funnyholidays_app php artisan cache:clear \
+          && docker exec funnyholidays_app php artisan storage:link"
