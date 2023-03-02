@@ -24,8 +24,8 @@ jobs:
           && npm ci \
           && npm run prod \
           && docker compose up -d \
-          && docker exec funnyholidays_app composer update --optimize-autoloader \
-          && docker exec funnyholidays_app composer install --optimize-autoloader --no-dev \
-          && docker exec funnyholidays_app php artisan migrate \
-          && docker exec funnyholidays_app php artisan cache:clear \
-          && docker exec funnyholidays_app php artisan storage:link"
+          && docker exec stroycom_app composer update --optimize-autoloader \
+          && docker exec stroycom_app composer install --optimize-autoloader --no-dev \
+          && docker exec stroycom_app php artisan migrate \
+          && docker exec stroycom_app php artisan cache:clear \
+          && docker exec stroycom_app php artisan storage:link"
