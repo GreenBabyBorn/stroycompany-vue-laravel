@@ -6,7 +6,7 @@ services:
       - ./docker-compose/nginx:/etc/nginx/conf.d
     ports:
       - 8876:80
-    container_name: project_nginx
+    container_name: stroycom_nginx
 
   app:
     build:
@@ -14,9 +14,7 @@ services:
       dockerfile: Dockerfile
     volumes:
       - ./:/var/www
-    depends_on:
-      - db
-    container_name: project_app
+    container_name: stroycom_app
 
 #   db:
 #     image: mysql:latest
