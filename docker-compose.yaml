@@ -6,8 +6,6 @@ services:
       - ./docker-compose/nginx:/etc/nginx/conf.d
     ports:
       - 8876:80
-    depends_on:
-      - app
     container_name: project_nginx
 
   app:
