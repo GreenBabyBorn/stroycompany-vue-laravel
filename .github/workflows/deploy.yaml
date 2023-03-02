@@ -22,7 +22,7 @@ jobs:
           ssh -i ~/.ssh/key -o StrictHostKeyChecking=no ${{secrets.USER}}@${{secrets.HOST}} "cd /var/www/stroycom \
           && docker system prune -f \
           && npm ci \
-          && npm run build \
+          && npm run prod \
           && docker compose up -d \
           && docker exec funnyholidays_app composer update --optimize-autoloader \
           && docker exec funnyholidays_app composer install --optimize-autoloader --no-dev \
