@@ -17,7 +17,7 @@ return [
 
     'stateful' => explode(',', env('SANCTUM_STATEFUL_DOMAINS', sprintf(
         '%s%s',
-        'stroycompany,stroycom.greenbabyborn.tk,localhost,localhost:8876,127.0.0.1,127.0.0.1:8000,::1',
+        'stroycompany,stroycom.greenbabyborn.tk,stroycom.greenbabyborn.ru,localhost,localhost:8876,127.0.0.1,127.0.0.1:8000,::1',
         Sanctum::currentApplicationUrlWithPort()
     ))),
 
